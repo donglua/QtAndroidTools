@@ -1,23 +1,29 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 project(QtAndroidTools LANGUAGES CXX)
 
-set(CMAKE_PREFIX_PATH ~/Qt/5.9.4/clang_64)
+set(CMAKE_PREFIX_PATH ~/Qt/5.10.1/clang_64)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Qt5Core)
 find_package(Qt5Quick)
 find_package(Qt5QuickControls2)
+find_package(quazip)
+find_package(zlib)
 
 add_executable(
-    ${PROJECT_NAME}
-    main.cpp
-    mainpresenter.cpp
-    mainview.cpp
-    qml.qrc
+        ${PROJECT_NAME}
+        main.cpp
+        mainpresenter.cpp
+        mainview.cpp
+        qml.qrc
 )
 
 target_link_libraries(
@@ -25,5 +31,10 @@ target_link_libraries(
         Qt5::Core
         Qt5::Quick
         Qt5::QuickControls2
+        quazip
+        zlib
 )
 
+
+add_subdirectory(lib)
+add_subdirectory(src)
