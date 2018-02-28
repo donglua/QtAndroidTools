@@ -16,14 +16,13 @@ find_package(Qt5Core)
 find_package(Qt5Quick)
 find_package(Qt5QuickControls2)
 find_package(quazip)
-find_package(zlib)
 
 add_executable(
         ${PROJECT_NAME}
-        main.cpp
-        mainpresenter.cpp
-        mainview.cpp
-        qml.qrc
+        src/main.cpp
+        src/mainpresenter.cpp
+        src/mainview.cpp
+        src/qml.qrc
 )
 
 target_link_libraries(
@@ -32,9 +31,7 @@ target_link_libraries(
         Qt5::Quick
         Qt5::QuickControls2
         quazip
-        zlib
 )
-
 
 add_subdirectory(lib)
 add_subdirectory(src)

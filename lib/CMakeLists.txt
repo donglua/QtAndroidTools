@@ -1,7 +1,6 @@
 project(libs)
 
 find_package(ZLIB)
-find_package(QtCore)
 
 if(NOT ZLIB_FOUND)
     add_subdirectory(zlib)
