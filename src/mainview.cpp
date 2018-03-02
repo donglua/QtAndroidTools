@@ -1,8 +1,7 @@
 #include "mainview.h"
 #include "mainpresenter.h"
 
-#include <QDebug>
-#include <QFile>
+#include <QDir>
 
 MainPresenter* presenter;
 
@@ -14,7 +13,9 @@ MainView::MainView(QQmlApplicationEngine *engine) : QObject(engine)
                    this,
                    SLOT(onApkFileSelected(QString)));
 
-    presenter = new MainPresenter();
+    MainModel *mainModel = new MainModel();
+    presenter = new MainPresenter(this, mainModel);
+
 }
 
 void MainView::onApkFileSelected(const QString &msg) {
@@ -27,7 +28,6 @@ void MainView::onApkFileSelected(const QString &msg) {
         qDebug() << file.errorString();
         return;
     }
-
     if (!file.exists()) {
         qDebug() << "文件不存在~";
         return;
@@ -35,5 +35,5 @@ void MainView::onApkFileSelected(const QString &msg) {
 
     qDebug() << "file size = "<< file.size();
 
-    presenter->unzip(&file);
+    auto path = presenter->unzip(&file);
 }

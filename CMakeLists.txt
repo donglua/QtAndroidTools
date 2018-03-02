@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9)
 
 project(QtAndroidTools LANGUAGES CXX)
 
@@ -15,6 +15,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Qt5Core)
 find_package(Qt5Quick)
 find_package(Qt5QuickControls2)
+find_package(Qt5Concurrent)
 find_package(quazip)
 
 add_executable(
@@ -23,6 +24,7 @@ add_executable(
         src/mainpresenter.cpp
         src/mainview.cpp
         src/qml.qrc
+        src/mainmodel.cpp
 )
 
 target_link_libraries(
@@ -30,6 +32,7 @@ target_link_libraries(
         Qt5::Core
         Qt5::Quick
         Qt5::QuickControls2
+        Qt5::Concurrent
         quazip
 )
 
