@@ -14,12 +14,12 @@ class MainModel : public QObject
     Q_OBJECT
 public:
     explicit MainModel(QObject *parent = nullptr);
+    QFuture<QStringList> extractDir(QFile *file, QString &extractedApkDir);
 
 public slots:
-    QFuture<QStringList> extractDir(const QFile *file, const QString &extractedApkDir);
 
 protected:
-    static QStringList extract(const QString &fileName, const QString &extractedApkDir);
+    static QStringList extract(QString &fileName, QString &extractedApkDir);
 };
 
 #endif //QTANDROIDTOOLS_MAINMODEL_H

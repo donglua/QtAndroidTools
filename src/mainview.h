@@ -11,8 +11,12 @@ class MainView : public QObject
 public:
     explicit MainView(QQmlApplicationEngine *engine = nullptr);
 
+signals:
+
+
 public slots:
     void onApkFileSelected(const QString &msg);
+    void onApkExtracted(QStringList &files);
 };
 
 #endif // MAINVIEW_H

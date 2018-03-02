@@ -15,6 +15,7 @@ public:
     QString unzip(QFile *file);
 
 signals:
+    void ApkExtracted(QStringList &files);
 
 public slots:
 

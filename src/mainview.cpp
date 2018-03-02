@@ -13,9 +13,8 @@ MainView::MainView(QQmlApplicationEngine *engine) : QObject(engine)
                    this,
                    SLOT(onApkFileSelected(QString)));
 
-    MainModel *mainModel = new MainModel();
+    auto *mainModel = new MainModel();
     presenter = new MainPresenter(this, mainModel);
-
 }
 
 void MainView::onApkFileSelected(const QString &msg) {
@@ -33,7 +32,12 @@ void MainView::onApkFileSelected(const QString &msg) {
         return;
     }
 
-    qDebug() << "file size = "<< file.size();
-
     auto path = presenter->unzip(&file);
 }
+
+void MainView::onApkExtracted(QStringList &files) {
+    for (const QString &s: files) {
+        qDebug() << "file: " << s;
+    }
+}
+
